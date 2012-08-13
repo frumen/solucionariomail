@@ -1,7 +1,7 @@
 <% if @user.errors.any? %>
   <div id="error_explanation">
     <div class="alert alert-error">
-      Hubo errores! <%= pluralize(@user.errors.count, "error") %>.
+      ¡Hubo errores!.
     </div>
     <ul>
     <% @user.errors.full_messages.each do |msg| %>

@@ -3,3 +3,28 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      user:
+        email: "E-mail"
+        name: "Nombre"
+        password: "Contraseña"
+        password_digest: "Contraseña"
+        password_confirmation: "Confirmación de contraseña"
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              blank: "no puede estar vacío."
+              invalid: "no tiene formato válido."
+            name:
+              blank: "no puede estar vacío."
+            password_digest:
+              blank: "no puede estar vacía."
+            password:
+              too_short: "es muy corta, debe tener al menos 6 caracteres."
+            password_confirmation:
+              blank: "no puede estar vacía."
