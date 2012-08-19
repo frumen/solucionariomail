@@ -5,6 +5,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
+    @top5 = User.find(:all, order: :name).slice(0,5)
   end
 
   def new
@@ -37,6 +38,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.paginate(page: params[:page])
+  end
+
+  def top5
+    @users = User.find(:all, order: :name).slice(0,5) 
   end
 
   def destroy

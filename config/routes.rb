@@ -16,6 +16,8 @@ Solucionario::Application.routes.draw do
 
   match '/signup', to:'users#new'
 
+  match '/top5', to:'users#top5'
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
