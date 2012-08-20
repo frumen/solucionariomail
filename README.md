@@ -2,7 +2,7 @@ Solucionario
 
 prueba desde mar
 
-y vuelta
+y vuelta aaaaa
 
 correr en las maquinas:
 git config branch.master.remote origin
