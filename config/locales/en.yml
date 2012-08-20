@@ -13,6 +13,10 @@ en:
         password: "Contraseña"
         password_digest: "Contraseña"
         password_confirmation: "Confirmación de contraseña"
+      question:
+        content: "Contenido"
+        title: "Título"
+        level: "Dificultad"    
     errors:
       models:
         user:
@@ -28,3 +32,9 @@ en:
               too_short: "es muy corta, debe tener al menos 6 caracteres."
             password_confirmation:
               blank: "no puede estar vacía."
+        question:
+          attributes:
+            content:
+              blank: "no puede estar vacío."
+            title:
+              blank: "no puede estar vacío."

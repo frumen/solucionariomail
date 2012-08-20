@@ -1,0 +1,7 @@
+<% provide(:title, @question.title+" por "+@question.user.name) %>
+<div class="row">
+  	  <h2><%= link_to(@question.user.name, @question.user) %> preguntó...</h2>
+      <h3><%= @question.title %></h3>
+      <br>
+	  <h4><%= @question.content %></h4>
+</div>

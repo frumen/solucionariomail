@@ -13,5 +13,13 @@
 		<ul class="users">
 		  <%= render @top5 %>
 		</ul>
+    <br><br><br>
+	  <% if @user.questions.any? %>
+      <h3>Preguntas (<%= @user.questions.count %>)</h3>
+      <ol class="questions">
+        <%= render @questions %>
+      </ol>
+      <%= will_paginate @questions %>
+    <% end %>
   </div>
 </div>

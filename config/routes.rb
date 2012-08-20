@@ -1,6 +1,7 @@
 Solucionario::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :questions, only: [:create, :destroy, :show]
 
   match '/signin', to: "sessions#new"
 
@@ -15,6 +16,8 @@ Solucionario::Application.routes.draw do
   match '/contact', to:'static_pages#contact'
 
   match '/signup', to:'users#new'
+
+  match '/ask', to:'questions#new'
 
   match '/top5', to:'users#top5'
 
