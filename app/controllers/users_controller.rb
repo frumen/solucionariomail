@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   end
 
   def top5
-    @users = User.find(:all, order: :name).slice(0,5) 
+    @users = User.find(:all, order: :name, limit: 5)
   end
 
   def destroy
