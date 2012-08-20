@@ -3,7 +3,9 @@
 <h1><%= link_to image_tag("solu_logo_big_w_crop.png", alt: "Solucionario"), root_path  %></h1>
 <br><br>
 <center>
+<%if !signed_in?%>	
 <%= link_to "Registrate!", signup_path, class: "btn btn-large btn-primary" %>
+<%end%>
 </center>
 </div>
 <br><br>
