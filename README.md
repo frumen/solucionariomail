@@ -1,1 +1,1 @@
-Solucionario cambiado en github, y ahora en pc
+Solucionario cambiado en github, y ahora en pc y ahora en github
