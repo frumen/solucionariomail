@@ -1,1 +1,3 @@
 public/index.html
+
+db/migrate/20120820205614_drop_pregunta.rb

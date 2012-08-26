@@ -1,7 +1,18 @@
-<% provide(:title, @question.title+" por "+@question.user.name) %>
+<% provide(:title, @question.title+" por "+@user.name) %>
 <div class="row">
-  	  <h2><%= link_to(@question.user.name, @question.user) %> preguntó...</h2>
+  	  <h2><%= link_to(@user.name, @user) %> preguntó...</h2>
       <h3><%= @question.title %></h3>
       <br>
-	  <h4><%= @question.content %></h4>
+	  <%= @question.content %>
 </div>
+<br><br>
+<% if @question.answers.any? %>
+      <h3>Respuestas (<%= @question.answers.count %>)</h3>
+      <br>
+      <ol class="answers">
+        <%= render @answers %>
+      </ol>
+      <%= will_paginate @answers %>
+<% end %>
+<br>
+<%= link_to "Responde!", new_user_question_answer_path(@user, @question), class: "btn btn-large btn-primary" %>

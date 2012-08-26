@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   attr_accessible :area_id, :content, :level, :title
   belongs_to :user
+  has_many :answers, dependent: :destroy
 
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 2000 }
