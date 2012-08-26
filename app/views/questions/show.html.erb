@@ -15,4 +15,6 @@
       <%= will_paginate @answers %>
 <% end %>
 <br>
+<%if current_user!=@user%>
 <%= link_to "Responde!", new_user_question_answer_path(@user, @question), class: "btn btn-large btn-primary" %>
+<%end%>

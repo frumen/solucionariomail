@@ -1,9 +1,9 @@
 <li>
   <%= gravatar_for user %>
   <%= link_to user.name, user %>
+  | <%= user.score%> puntos 
   <% if current_user.admin? && !current_user?(user) %>
     | <%= link_to "Eliminar", user, method: :delete,
                                   data: { confirm: "Seguro?" } %>
   <% end %>
-  <!--#ACA IRIAN LA CANTIDAD DE PREGUNTAS RESPONDIDAS-->
 </li>

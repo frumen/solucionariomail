@@ -7,5 +7,5 @@ class Answer < ActiveRecord::Base
   validates :question_id, presence: true
   validates :content, presence: true, length: { maximum: 2000 }
 
-  default_scope order: 'answers.created_at DESC'
+  default_scope order: 'answers.created_at'
 end

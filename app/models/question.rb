@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :area_id, :content, :level, :title
+  attr_accessible :area_id, :content, :level, :title, :user_id
   belongs_to :user
   has_many :answers, dependent: :destroy
 

@@ -3,7 +3,7 @@ Solucionario::Application.routes.draw do
 
   resources :users do
     resources :questions, only: [:new, :create, :show, :destroy] do
-      resources :answers, only: [:new, :create, :destroy]
+      resources :answers, only: [:new, :create, :destroy, :update]
     end
   end
 

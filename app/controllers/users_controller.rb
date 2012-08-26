@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @top5 = User.find(:all, order: :name).slice(0,5)
+    @top5 = User.find(:all, order: :score).reverse.slice(0,5)
     @questions = @user.questions.paginate(page: params[:page])
   end
 
@@ -49,6 +49,11 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "Usuario Eliminado"
     redirect_to users_path
+  end
+
+  def premiar
+    @score = self.score+10
+    self.update_attribute(:score, @score) 
   end
 
   private

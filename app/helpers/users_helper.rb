@@ -5,4 +5,10 @@ module UsersHelper
     gravatar_url = "https://secure.gravatar.com/avatar/#{gravatar_id}"
     image_tag(gravatar_url, alt: user.name, class: "gravatar")
   end
+
+  def premiar(user)
+  	@score = user.score+10
+	user.update_attributes(score: 10) 
+  end
+
 end
