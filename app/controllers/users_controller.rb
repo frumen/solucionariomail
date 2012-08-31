@@ -7,6 +7,7 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
     @top5 = User.find(:all, order: :score).reverse.slice(0,5)
     @questions = @user.questions.paginate(page: params[:page])
+    @areas = @user.areas
   end
 
   def new

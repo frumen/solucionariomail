@@ -1,6 +1,7 @@
 class Question < ActiveRecord::Base
   attr_accessible :area_id, :content, :level, :title, :user_id
   belongs_to :user
+  belongs_to :area
   has_many :answers, dependent: :destroy
 
   validates :user_id, presence: true
