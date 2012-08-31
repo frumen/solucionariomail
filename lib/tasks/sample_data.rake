@@ -15,13 +15,6 @@ namespace :db do
                    password: password,
                    password_confirmation: password)
     end
-    5.times do |n|
-      titulo  = "Tiulo#{n+1}"
-      contenido = "contenido#{n+1}"
-      Question.create!(title: titulo,
-                   content: contenido,
-                   user_id: n+1)
-    end
     Area.create!(name:'Negocios')
     Area.create!(name:'Tecnologia e Internet')
     Area.create!(name:'Economia')
@@ -38,6 +31,14 @@ namespace :db do
     5.times do |n|
       user  = User.find(n+1)
       user.area_users.create!(area_id: n+1)
+    end
+    5.times do |n|
+      titulo  = "Tiulo#{n+1}"
+      contenido = "contenido#{n+1}"
+      Question.create!(title: titulo,
+                   content: contenido,
+                   user_id: n+1,
+                   area_id: n+1)
     end
   end
 end

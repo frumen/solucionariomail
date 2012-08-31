@@ -10,6 +10,10 @@
       <%= f.text_field :title %>
 
       <%= f.text_area :content, placeholder: "Contenido..." %>
+      <br>
+      <h3>Área de Experiencia</h3>
+      <br>
+      <%= f.collection_select(:area_id, Area.find(:all), :id, :name) %>
 
       <%= f.submit "Preguntar", class: "btn btn-large btn-primary" %>
     <% end %>
