@@ -11,6 +11,10 @@ class UsersController < ApplicationController
 
   def new
   	@user = User.new
+    (Area.all - @user.areas).each do |area|
+    @user.area_users.build( area_id: area.id )
+    end
+    @user.area_users.sort_by! { |x| x.area.name }
   end
 
   def create
@@ -25,6 +29,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
+    (Area.all - @user.areas).each do |area|
+      @user.area_users.build( area_id: area.id )
+    end
+    @user.area_users.sort_by! { |x| x.area.name }
   end
 
   def update

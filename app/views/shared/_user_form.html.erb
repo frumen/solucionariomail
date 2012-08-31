@@ -1,0 +1,34 @@
+<%= form_for(@user) do |f| %>
+      <%= render 'shared/error_messages' %>
+
+      <%= f.label :name, 'Nombre' %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email, 'E-Mail' %>
+      <%= f.text_field :email %>
+
+      <%= f.label :password, 'Contraseña' %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmación" %>
+      <%= f.password_field :password_confirmation %>
+        <br><br>
+        <h3>Experiencias</h3>
+        <br>
+        <%= f.fields_for :area_users do |ff|%>
+          <label class="checkbox">
+            <p>
+            <%= ff.check_box :_destroy, 
+                {checked: ff.object.persisted?},'0','1'%>
+                <%= ff.label :_destroy, ff.object.area.name %>
+            <%= ff.hidden_field :area_id %>
+            </p>
+          </label>
+        <%end%>
+        <br>
+      <%if @user==current_user%>
+      <%= f.submit "Cambiar mis datos", class: "btn btn-large btn-primary" %>
+      <%else%>
+      <%= f.submit "Crear mi cuenta", class: "btn btn-large btn-primary" %>
+      <%end%>
+    <% end %>

@@ -22,5 +22,22 @@ namespace :db do
                    content: contenido,
                    user_id: n+1)
     end
+    Area.create!(name:'Negocios')
+    Area.create!(name:'Tecnologia e Internet')
+    Area.create!(name:'Economia')
+    Area.create!(name:'Educacion')
+    Area.create!(name:'Automoviles')
+    Area.create!(name:'Casa y Jardin')
+    Area.create!(name:'Deportes')
+    Area.create!(name:'Gastronomia')
+    Area.create!(name:'Sociedad y Cultura')
+    Area.create!(name:'Turismo')
+    Area.create!(name:'Humanidades')
+    Area.create!(name:'Ciencias e Ingenieria')
+    Area.create!(name:'Arte y Ocio')
+    5.times do |n|
+      user  = User.find(n+1)
+      user.area_users.create!(area_id: n+1)
+    end
   end
 end

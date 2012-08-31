@@ -10,10 +10,13 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :name, :password, :password_confirmation, :score
+  attr_accessible :email, :name, :password, :password_confirmation, :score, :area_users_attributes
   has_secure_password
   has_many :questions, dependent: :destroy
   has_many :written_answers, class_name: "Answer", foreign_key: "user_id"
+  has_many :area_users
+  has_many :areas, through: :area_users, source: :area
+  accepts_nested_attributes_for :area_users, allow_destroy: true
 
   before_save { |user| user.email = email.downcase }
 
