@@ -20,6 +20,8 @@ Solucionario::Application.routes.draw do
 
   match '/help', to:'static_pages#help'
 
+  match '/buy', to:'static_pages#buy'
+
   match '/about', to:'static_pages#about'
 
   match '/contact', to:'static_pages#contact'

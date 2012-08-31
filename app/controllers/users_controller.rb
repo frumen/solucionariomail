@@ -66,6 +66,21 @@ class UsersController < ApplicationController
     self.update_attribute(:score, @score) 
   end
 
+  def buy_sml
+    @score = self.score+50
+    self.update_attribute(:score, @score) 
+  end
+
+  def buy_med
+    @score = self.score+100
+    self.update_attribute(:score, @score) 
+  end
+
+  def buy_lrg
+    @score = self.score+150
+    self.update_attribute(:score, @score) 
+  end
+
   private
 
   def correct_user
