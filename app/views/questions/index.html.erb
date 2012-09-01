@@ -1,0 +1,16 @@
+<% provide(:title, 'Preguntas') %>
+<h1>Preguntas que puedes responder</h1>
+
+<ul class="questions">
+	<% @questions.each do |q| %>
+	<li>
+	  <span class="title">
+	  	<%= link_to q.title, user_question_path(q.user, q) %>
+	  </span>
+	    <p><%= q.area.name %></p>
+	  <span class="timestamp">
+	    Realizada <%= q.created_at %> .
+	  </span>
+	</li>
+	<% end %>
+</ul>

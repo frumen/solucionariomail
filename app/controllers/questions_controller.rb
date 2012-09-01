@@ -38,6 +38,26 @@ class QuestionsController < ApplicationController
     redirect_to user_question_path(@user, @question)
   end
 
+  def index
+    @user = current_user
+    @areas = current_user.areas
+    @areacods = []
+    @areas.each do |a|
+      @areacods.push(a.id)
+    end
+    @questions = Question.find_all_by_area_id(@areacods)
+    @questions.each do |q|
+      if q.user_id==@user.id
+        @questions.delete(q)
+      end
+      q.answers.each do |a|
+        if a.writer.id==@user.id
+          @questions.delete(q)
+        end
+      end
+    end
+  end
+
   def destroy
   end
 end

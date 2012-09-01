@@ -7,10 +7,9 @@ Solucionario::Application.routes.draw do
     end
   end
 
-
   resources :sessions, only: [:new, :create, :destroy]
-  #resources :questions, only: [:create, :destroy, :show]
-  #resources :answers, only: [:create, :destroy]
+
+  resources :questions, only: [:index]
 
   match '/signin', to: "sessions#new"
 
@@ -28,9 +27,7 @@ Solucionario::Application.routes.draw do
 
   match '/signup', to:'users#new'
 
-  #match '/ask', to:'questions#new'
-
-  #match '/respond', to:'answers#new'
+  #match '/pregs', to: 'questions#index'
 
   match '/top5', to:'users#top5'
 
