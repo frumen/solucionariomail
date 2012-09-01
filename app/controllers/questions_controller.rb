@@ -17,15 +17,25 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
-    @answers = @question.answers.where("available = 1")
     @user = @question.user
+    if current_user==@user
+      @answers = @question.answers.where("available = 1")
+    else
+      @answers = @question.answers
+    end
   end
 
   def update
     @question = Question.find(params[:id])
     @user = current_user
     @answers = @question.answers.where("available = 0").slice(0,3)
-    #AHORA HAY QUE HACER DISPONIBLES LAS @ANS Y SACAR PUNTOS AL @USR
+    @score = @user.score-10
+    @user.update_attribute(:score, @score)
+    sign_in @user
+    @answers.each do |a| 
+     a.update_attribute(:available, 1) 
+    end
+    redirect_to user_question_path(@user, @question)
   end
 
   def destroy

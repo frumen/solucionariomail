@@ -14,9 +14,16 @@
       </ol>
 <% end %>
 <br>
-<%if current_user!=@user%>
-<%= link_to "Responde!", new_user_question_answer_path(@user, @question), class: "btn btn-large btn-primary" %>
+<% if current_user!=@user %>
+  <% if !@answers.where("user_id = ?", current_user.id).any? %>
+    <%= link_to "Responde!", new_user_question_answer_path(@user, @question), class: "btn btn-large btn-primary" %>
+  <% end %>
 <% else %>
+  <% if @question.answers.where("available = 0").any? %>
+    <% if @user.score>=10 %>
       <%= link_to "Canjear Puntos", user_question_path(@user, @question), method: :put,  class: "btn btn-large btn-primary" %>
+    <% else %>
       <%= link_to "Comprar puntos", buy_path, class: "btn btn-large btn-primary" %>
-<%end%>
+    <% end %>
+  <% end %>
+<% end %>

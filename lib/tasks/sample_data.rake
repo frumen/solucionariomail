@@ -4,7 +4,8 @@ namespace :db do
     admin = User.create!(name: "Fede",
                  email: "federicofrumento21@hotmail.com",
                  password: "estaba",
-                 password_confirmation: "estaba")
+                 password_confirmation: "estaba",
+                 score: 100)
     admin.toggle!(:admin)
     5.times do |n|
       name  = Faker::Name.name
