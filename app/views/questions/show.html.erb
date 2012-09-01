@@ -12,9 +12,11 @@
       <ol class="answers">
         <%= render @answers %>
       </ol>
-      <%= will_paginate @answers %>
 <% end %>
 <br>
 <%if current_user!=@user%>
 <%= link_to "Responde!", new_user_question_answer_path(@user, @question), class: "btn btn-large btn-primary" %>
+<% else %>
+      <%= link_to "Canjear Puntos", user_question_path(@user, @question), method: :put,  class: "btn btn-large btn-primary" %>
+      <%= link_to "Comprar puntos", buy_path, class: "btn btn-large btn-primary" %>
 <%end%>

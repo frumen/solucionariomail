@@ -68,6 +68,10 @@ p {
 
 /* header */
 
+header {
+    font-size: 1.2em;
+}
+
 #logo {
   float: left;
   margin-right: 10px;
@@ -89,6 +93,7 @@ p {
 /* footer */
 
 footer {
+  font-size: 1.2em;
   margin-top: 45px;
   padding-top: 5px;
   border-top: 1px solid #eaeaea;
