@@ -50,6 +50,8 @@ class QuestionsController < ApplicationController
       if q.user_id==@user.id
         @questions.delete(q)
       end
+    end
+    @questions.each do |q|
       q.answers.each do |a|
         if a.writer.id==@user.id
           @questions.delete(q)
