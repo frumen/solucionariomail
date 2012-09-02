@@ -11,16 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120901125230) do
+ActiveRecord::Schema.define(:version => 20120902185527) do
 
   create_table "answers", :force => true do |t|
-    t.string   "content"
+    t.text     "content",     :limit => 255, :default => "0"
     t.integer  "user_id"
     t.integer  "question_id"
-    t.integer  "points"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
-    t.integer  "available",   :default => 0
+    t.integer  "points",                     :default => 0
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "available",                  :default => 0
   end
 
   add_index "answers", ["question_id"], :name => "index_answers_on_question_id"
@@ -41,14 +41,20 @@ ActiveRecord::Schema.define(:version => 20120901125230) do
 
   add_index "areas", ["name"], :name => "index_areas_on_name"
 
+  create_table "countries", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "questions", :force => true do |t|
     t.string   "title"
-    t.string   "content"
+    t.text     "content",    :limit => 255
     t.integer  "area_id"
     t.integer  "level"
     t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "questions", ["area_id", "created_at"], :name => "index_questions_on_area_id_and_created_at"
@@ -63,6 +69,10 @@ ActiveRecord::Schema.define(:version => 20120901125230) do
     t.string   "remember_token"
     t.boolean  "admin",           :default => false
     t.integer  "score",           :default => 0
+    t.string   "surname"
+    t.date     "birth"
+    t.integer  "country_id"
+    t.string   "sex"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

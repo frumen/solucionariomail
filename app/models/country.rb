@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: areas
+# Table name: countries
 #
 #  id         :integer          not null, primary key
 #  name       :string(255)
@@ -8,13 +8,12 @@
 #  updated_at :datetime         not null
 #
 
-class Area < ActiveRecord::Base
+class Country < ActiveRecord::Base
   attr_accessible :name
 
-  has_many :area_users
-  has_many :questions
+  has_many :users
 
   validates :name, presence: true
 
-  default_scope order: 'areas.name'
+  default_scope order: 'countries.name'
 end
