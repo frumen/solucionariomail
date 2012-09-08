@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, only: [:edit, :update, :index]
   before_filter :correct_user, only: [:edit, :update]
-  before_filter :admin_user, only: :destroy
 
   def show
   	@user = User.find(params[:id])
@@ -58,7 +57,7 @@ class UsersController < ApplicationController
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "Usuario Eliminado"
-    redirect_to users_path
+    redirect_to root_path
   end
 
   def premiar
@@ -67,18 +66,27 @@ class UsersController < ApplicationController
   end
 
   def buy_sml
-    @score = self.score+50
-    self.update_attribute(:score, @score) 
+    @user = current_user
+    @score = @user.score+50
+    @user.update_attribute(:score, @score) 
+    sign_in @user
+    redirect_to @user
   end
 
   def buy_med
-    @score = self.score+100
-    self.update_attribute(:score, @score) 
+    @user = current_user
+    @score = @user.score+100
+    @user.update_attribute(:score, @score) 
+    sign_in @user
+    redirect_to @user
   end
 
   def buy_lrg
-    @score = self.score+150
-    self.update_attribute(:score, @score) 
+    @user = current_user
+    @score = @user.score+150
+    @user.update_attribute(:score, @score) 
+    sign_in @user
+    redirect_to @user
   end
 
   private

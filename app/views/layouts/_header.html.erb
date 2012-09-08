@@ -15,9 +15,10 @@
                 <%= current_user.name %> <b class="caret"></b>
               </a>
               <ul class="dropdown-menu">
-                <li><%= link_to "Perfil", current_user %></li>
+                <li><%= link_to "Mi Perfil", current_user %></li>
                 <li><%= link_to "Cambiar datos", edit_user_path(current_user) %></li>
                 <li><%= link_to "Comprar puntos", buy_path %></li>
+                <li><%= link_to "Eliminar mi Cuenta", current_user, method: :delete, data: { confirm: "¿Estas seguro que deseas eliminar tu cuenta?" } %></li>
                 <li class="divider"></li>
                 <li>
                   <%= link_to "Salir", signout_path, method: "delete" %>

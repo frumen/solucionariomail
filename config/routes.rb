@@ -15,6 +15,12 @@ Solucionario::Application.routes.draw do
 
   match '/signout', to: "sessions#destroy", via: :delete
 
+  match '/buy_sml', to: "users#buy_sml"
+
+  match '/buy_med', to: "users#buy_med"
+
+  match '/buy_lrg', to: "users#buy_lrg"
+
   root to: 'static_pages#home'
 
   match '/help', to:'static_pages#help'

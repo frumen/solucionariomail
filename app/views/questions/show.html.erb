@@ -3,7 +3,7 @@
   	  <h2><%= link_to(@user.name, @user) %> preguntó...</h2>
       <h3><%= @question.title %> -- <%= @question.area.name %></h3>
       <br>
-	  <%= @question.content %>
+	  <%= simple_format(@question.content) %>
 </div>
 <br><br>
 <% if @question.answers.any? %>

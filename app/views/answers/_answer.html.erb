@@ -1,5 +1,5 @@
 <li>
-  <span class="title"><%= answer.content %></span>
+  <span class="title"><%= simple_format(answer.content) %></span>
   <span class="timestamp">
     Realizada por <%= answer.writer.name %>, <%= answer.created_at %>.
     <br>

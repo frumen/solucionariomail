@@ -11,15 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120902185527) do
+ActiveRecord::Schema.define(:version => 20120908181240) do
 
   create_table "answers", :force => true do |t|
-    t.text     "content",     :limit => 255, :default => "0"
+    t.text     "content",     :limit => 255
     t.integer  "user_id"
     t.integer  "question_id"
     t.integer  "points",                     :default => 0
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "available",                  :default => 0
   end
 

@@ -3,3 +3,5 @@ public/index.html
 db/migrate/20120820205614_drop_pregunta.rb
 
 db/migrate/20120902173145_add_data_to_users.rb
+
+db/migrate/20120908181240_corregir_ans_cont_def.rb
