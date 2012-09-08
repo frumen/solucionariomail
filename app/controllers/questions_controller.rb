@@ -8,7 +8,7 @@ class QuestionsController < ApplicationController
   def create
   	@question = current_user.questions.build(params[:question])
   	if @question.save
-  		flash[:success] = "Pregunta realizada!"
+  		flash[:success] = "Su consulta se ha publicado con exito."
   		redirect_to root_path
   	else
   		render 'new'
@@ -29,7 +29,13 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @user = current_user
     @answers = @question.answers.where("available = 0").slice(0,3)
-    @score = @user.score-10
+    if @question.level==1
+      @score = @user.score-10
+    elsif @question.level==2
+      @score = @user.score-20
+    else
+      @score = @user.score-30
+    end
     @user.update_attribute(:score, @score)
     sign_in @user
     @answers.each do |a| 

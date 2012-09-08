@@ -21,6 +21,8 @@ class Question < ActiveRecord::Base
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum: 2000 }
   validates :title, presence: true
+  validates :level, presence: true
+  validates :area_id, presence: true
 
   default_scope order: 'questions.created_at DESC'
 end

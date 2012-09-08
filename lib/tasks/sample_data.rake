@@ -69,7 +69,8 @@ namespace :db do
       Question.create!(title: titulo,
                    content: contenido,
                    user_id: n+1,
-                   area_id: n+1)
+                   area_id: n+1,
+                   level: 1)
     end
   end
 end

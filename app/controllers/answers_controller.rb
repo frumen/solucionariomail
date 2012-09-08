@@ -10,9 +10,20 @@ class AnswersController < ApplicationController
 	def create
 		@question = Question.find(params[:question_id])
 		@user = User.find(params[:user_id])
+		@cuser = current_user
+		if @question.level==1
+			@score = @cuser.score+10
+		elsif @question.level==2
+			@score = @cuser.score+20
+		else
+			@score = @cuser.score+30
+		end
 		@answer = @question.answers.build(params[:answer])
 		if @answer.save
-			flash[:success] = "Pregunta respondida!"
+			@mensaje = "Usted ahora tiene #{@score} puntos."
+			flash[:success] = @mensaje
+			@cuser.update_attribute(:score, @score) 
+			sign_in @cuser
 			redirect_to user_question_path(@user, @question)
 		else
 			render root_path

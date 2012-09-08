@@ -1,9 +1,17 @@
 <% provide(:title, @question.title+" por "+@user.name) %>
 <div class="row">
   	  <h2><%= link_to(@user.name, @user) %> preguntó...</h2>
-      <h3><%= @question.title %> -- <%= @question.area.name %></h3>
-      <br>
-	  <%= simple_format(@question.content) %>
+      <h3>
+        <%= @question.title %> - <%= @question.area.name %>
+        <% if @question.level==1 %>
+        - Complejidad Baja
+        <% elsif @question.level==2 %>
+        - Complejidad Media
+        <% else %>
+        - Complejidad Alta
+        <% end %>
+      </h3>
+    <%= simple_format(@question.content) %>
 </div>
 <br><br>
 <% if @question.answers.any? %>
@@ -20,7 +28,7 @@
   <% end %>
 <% else %>
   <% if @question.answers.where("available = 0").any? %>
-    <% if @user.score>=10 %>
+    <% if @user.score>=@question.level*10 %>
       <%= link_to "Canjear Puntos", user_question_path(@user, @question), method: :put,  class: "btn btn-large btn-primary" %>
     <% else %>
       <%= link_to "Comprar puntos", buy_path, class: "btn btn-large btn-primary" %>

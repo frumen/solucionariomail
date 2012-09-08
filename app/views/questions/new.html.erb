@@ -11,6 +11,17 @@
 
       <%= f.text_area :content, placeholder: "Contenido..." %>
       <br>
+      <h3>Nivel de Complejidad</h3>
+      <br>
+      <div class="radio">
+        <%= f.radio_button(:level, 1) %>
+        <%= f.label(:level, "Bajo") %>
+        <%= f.radio_button(:level, 2) %>
+        <%= f.label(:level, "Medio") %>
+        <%= f.radio_button(:level, 3) %>
+        <%= f.label(:level, "Alto") %>
+      </div>
+      <br>
       <h3>Área de Experiencia</h3>
       <br>
       <%= f.collection_select(:area_id, Area.find(:all), :id, :name) %>
