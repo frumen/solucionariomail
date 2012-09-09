@@ -19,6 +19,7 @@
       <br><br>
       <h3>Fecha de Nacimiento</h3>
       <br>
+      <div class="fecha">
        <%= f.date_select :birth,
         {:start_year => Time.now.year,
         :end_year => 1900,
@@ -27,8 +28,8 @@
         :prompt => {:month => 'Mes', :day => 'Dia', :year => 'Año'}},
         {:class => 'year',
         :id => 'birth'}%>
-
-      <br><br>
+      </div>
+      <br>
       <h3>Pais</h3>
       <br>
       <%= f.collection_select(:country_id, Country.find(:all), :id, :name) %>

@@ -10,6 +10,9 @@ en:
       user:
         email: "E-mail"
         name: "Nombre"
+        surname: "Apellido"
+        birth: "Fecha de Nacimiento"
+        sex: "Sexo"
         password: "Contraseña"
         password_digest: "Contraseña"
         password_confirmation: "Confirmación de contraseña"
@@ -26,10 +29,16 @@ en:
               invalid: "no tiene formato válido."
             name:
               blank: "no puede estar vacío."
+            surname:
+              blank: "no puede estar vacío."
+            sex:
+              blank: "no puede estar vacío."
+            birth:
+              blank: "no puede estar vacía."
             password_digest:
               blank: "no puede estar vacía."
             password:
-              too_short: "es muy corta, debe tener al menos 6 caracteres."
+              too_short: "es muy corta, debe tener al menos 8 caracteres."
             password_confirmation:
               blank: "no puede estar vacía."
         question:

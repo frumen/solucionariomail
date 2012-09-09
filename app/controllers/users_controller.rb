@@ -4,7 +4,9 @@ class UsersController < ApplicationController
 
   def show
   	@user = User.find(params[:id])
-    @top5 = User.find(:all, order: :score).reverse.slice(0,5)
+    @rank_list = User.find(:all, order: :score).reverse
+    @top5 = @rank_list.slice(0,5)
+    @pos = @rank_list.rindex(@user) + 1
     @questions = @user.questions.paginate(page: params[:page])
     @areas = @user.areas
   end
@@ -24,6 +26,10 @@ class UsersController < ApplicationController
       flash[:success] = "Bienvenido!"
       redirect_to @user
     else
+      (Area.all - @user.areas).each do |area|
+      @user.area_users.build( area_id: area.id )
+      end
+      @user.area_users.sort_by! { |x| x.area.name }
       render 'new'
     end
   end
@@ -42,6 +48,10 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
+      (Area.all - @user.areas).each do |area|
+      @user.area_users.build( area_id: area.id )
+      end
+      @user.area_users.sort_by! { |x| x.area.name }      
       render 'edit'
     end
   end

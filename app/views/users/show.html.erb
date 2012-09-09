@@ -2,18 +2,35 @@
 <div class="row">
   <aside class="span4">
     <section>
-		<h1>
-			<%= gravatar_for @user %>
-			<%= @user.name %>
-		</h1>
-    <br><br><br><br>
-    <h3>Experiencias</h3>
-    <br>
-    <h4><%= render @areas %></h4>
-	</section>
+  		<h1>
+  			<%= gravatar_for @user %>
+  			<%= @user.name %>
+  		</h1>
+      <h2>
+        de <%= @user.country.name %>
+      </h2>
+    </section>
+    <section>
+      <h3>Experiencias</h3>
+      <h4>
+        <%= render @areas %>
+      </h4>
+    </section>
+    <section>
+      <h3>
+        Preguntas realizadas: <%= @user.questions.count %>
+        <br><br>
+        Preguntas respondidas: <%= @user.written_answers.count %>
+        <br><br>
+        Puntaje: <%= @user.score %>
+        <br><br>
+        Ranking: <%= @pos %>
+      </h3>
+	  </section>
   </aside>
   <div class="span8">
       <h3>Top 5 de <%=link_to("Solubridades", users_path )%></h3>
+      <br>
 		<ul class="users">
 		  <%= render @top5 %>
 		</ul>
