@@ -1,0 +1,20 @@
+<% provide(:title, 'Comentar sobre Respuesta') %>
+<div class="row">
+      <h2><%= link_to(@user.name, @user) %> respondió...</h2>
+      <br>
+    <%= @answer.content %>
+</div>
+<br>
+<h1>Comenta sobre la Respuesta!</h1>
+<div class="row">
+  <div class="span6 offset3">
+    <%= form_for([@user, @question, @answer, @comment]) do |f| %>
+  <%= render 'shared/comment_error_messages', object: f.object %>
+  <div class="field">
+    <%= hidden_field_tag 'comment[user_id]', current_user.id %>
+    <%= f.text_area :content, placeholder: "Comentario..." %>
+  </div>
+  <%= f.submit "Comentar!", class: "btn btn-large btn-primary" %>
+<% end %>
+  </div>
+</div>

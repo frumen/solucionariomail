@@ -1,9 +1,13 @@
 Solucionario::Application.routes.draw do
+  get "comments/new"
+
   #resources :users
 
   resources :users do
     resources :questions, only: [:new, :create, :show, :destroy, :update] do
-      resources :answers, only: [:new, :create, :destroy, :update]
+      resources :answers, only: [:new, :create, :destroy, :update] do
+        resources :comments, only: [:new, :create, :destroy, :update]
+      end
     end
   end
 

@@ -22,6 +22,7 @@ class User < ActiveRecord::Base
   has_secure_password
   has_many :questions, dependent: :destroy
   has_many :written_answers, class_name: "Answer", foreign_key: "user_id"
+  has_many :comments, dependent: :destroy
   has_many :area_users
   has_many :areas, through: :area_users, source: :area
   belongs_to :country

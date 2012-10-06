@@ -4,10 +4,22 @@
     Realizada por <%= answer.writer.name %>, <%= answer.created_at %>.
     <br>
   </span>
+  <br>
+  <% if answer.comments.any? %>
+      <% @comments = answer.comments %>
+      <h4>_______Comentarios (<%= answer.comments.count %>)</h4>
+      <br>
+      <span class="tab">
+      <ol class="comments">
+        <%= render @comments %>
+      </ol>
+      </span>
+  <% end %>
   	<% @writer = User.find(answer.writer.id) %>
   	<%if @user==current_user && answer.points!=1%>
   	<%= link_to "Es util!", user_question_answer_path(@writer.id, @question.id, answer.id), method: :put, class: "btn btn-medium btn-primary" %>
   	<%elsif answer.points==1%>
   	<b>Marcada como útil</b>
   	<%end%>
+    _______<%= link_to "Comentar", new_user_question_answer_comment_path(current_user, @question, answer.id), class: "btn btn-medium btn-primary" %>
 </li>

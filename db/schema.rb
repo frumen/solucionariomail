@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120908181240) do
+ActiveRecord::Schema.define(:version => 20121006174735) do
 
   create_table "answers", :force => true do |t|
     t.text     "content",     :limit => 255
@@ -40,6 +40,14 @@ ActiveRecord::Schema.define(:version => 20120908181240) do
   end
 
   add_index "areas", ["name"], :name => "index_areas_on_name"
+
+  create_table "comments", :force => true do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "answer_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "countries", :force => true do |t|
     t.string   "name"
