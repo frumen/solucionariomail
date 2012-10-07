@@ -19,9 +19,13 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @user = @question.user
     if current_user==@user
-      @answers = @question.answers.where("available = 1")
+      @answers = @question.answers.where("available = 1 and rejected = 0")
     else
-      @answers = @question.answers
+      @answers = @question.answers.where("rejected = 0")
+    end
+    @useful=0
+    @answers.each do |a|
+      @useful=@useful+a.points
     end
   end
 
@@ -64,6 +68,20 @@ class QuestionsController < ApplicationController
         end
       end
     end
+  end
+
+  def refund
+    @question = Question.find(params[:id])
+    @user = current_user
+    @rej_answers = @question.answers.where("available = 1")
+    @rej_answers.each do |a| 
+     a.update_attribute(:rejected, 1) 
+    end
+    @answers = @question.answers.where("available = 0").slice(0,3)
+    @answers.each do |a| 
+     a.update_attribute(:available, 1) 
+    end
+    redirect_to user_question_path(@user, @question)
   end
 
   def destroy
