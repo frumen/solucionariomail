@@ -1,8 +1,16 @@
 <li>
-  <span class="title">
+  <font size=4>
   	<%= link_to(question.title, user_question_path(@user, question)) %>
-  </span>
-    <p><%= question.area.name %></p>
+  </font>
+  <br>
+  <%= question.area.name %>
+        <% if question.level==1 %>
+        - Urgencia Baja
+        <% elsif question.level==2 %>
+        - Urgencia Media
+        <% else %>
+        - Urgencia Alta
+        <% end %>
   <span class="timestamp">
     Realizada <%= question.created_at %> .
   </span>

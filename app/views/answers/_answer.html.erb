@@ -7,13 +7,13 @@
   <br>
   <% if answer.comments.any? %>
       <% @comments = answer.comments %>
-      <h4>_______Comentarios (<%= answer.comments.count %>)</h4>
+      <div class="comment_title">
+      <h4>Comentarios (<%= answer.comments.count %>)</h4>
+      </div>
       <br>
-      <span class="tab">
       <ol class="comments">
         <%= render @comments %>
       </ol>
-      </span>
   <% end %>
   	<% @writer = User.find(answer.writer.id) %>
   	<%if @user==current_user && answer.points!=1%>
@@ -21,5 +21,7 @@
   	<%elsif answer.points==1%>
   	<b>Marcada como útil</b>
   	<%end%>
-    _______<%= link_to "Comentar", new_user_question_answer_comment_path(current_user, @question, answer.id), class: "btn btn-medium btn-primary" %>
+    <div class="comment_title">
+    <%= link_to "Comentar", new_user_question_answer_comment_path(current_user, @question, answer.id), class: "btn btn-medium btn-primary" %>
+    </div>
 </li>

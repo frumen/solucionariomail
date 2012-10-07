@@ -24,5 +24,5 @@ class Question < ActiveRecord::Base
   validates :level, presence: true
   validates :area_id, presence: true
 
-  default_scope order: 'questions.created_at DESC'
+  default_scope order: 'questions.level DESC'
 end

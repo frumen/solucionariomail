@@ -4,11 +4,11 @@
       <h3>
         <%= @question.title %> - <%= @question.area.name %>
         <% if @question.level==1 %>
-        - Complejidad Baja
+        - Urgencia Baja
         <% elsif @question.level==2 %>
-        - Complejidad Media
+        - Urgencia Media
         <% else %>
-        - Complejidad Alta
+        - Urgencia Alta
         <% end %>
       </h3>
     <%= simple_format(@question.content) %>

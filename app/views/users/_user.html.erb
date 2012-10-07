@@ -1,5 +1,5 @@
 <li>
-  <%= gravatar_for user %>
+	<% if !@top5 %><%= gravatar_for user %> <% end %>
   <%= link_to user.name, user %>
   | <%= user.score%> puntos 
   <% if current_user.admin? && !current_user?(user) %>

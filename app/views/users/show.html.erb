@@ -1,11 +1,19 @@
 <% provide(:title, @user.name) %>
 <div class="row">
   <aside class="span4">
+    <h3>Top 5 de <%=link_to("Solubridades", users_path )%></h3>
+      <br>
+    <ul class="users">
+      <%= render @top5 %>
+    </ul>
+  </aside>
+  <div class="span8">
     <section>
-  		<h1>
-  			<%= gravatar_for @user %>
-  			<%= @user.name %>
-  		</h1>
+      <h1>
+        <%= gravatar_for @user %>
+        <br>
+        <%= @user.name %>
+      </h1>
       <h2>
         de <%= @user.country.name %>
       </h2>
@@ -22,25 +30,22 @@
         <br><br>
         Preguntas respondidas: <%= @user.written_answers.count %>
         <br><br>
+        Comentarios: <%= @user.comments.count %>
+        <br><br>
         Puntaje: <%= @user.score %>
         <br><br>
         Ranking: <%= @pos %>
       </h3>
-	  </section>
-  </aside>
-  <div class="span8">
-      <h3>Top 5 de <%=link_to("Solubridades", users_path )%></h3>
-      <br>
-		<ul class="users">
-		  <%= render @top5 %>
-		</ul>
-    <br><br><br>
+    </section>
+    <br>
 	  <% if @user.questions.any? %>
+    <section>
       <h3>Preguntas (<%= @user.questions.count %>)</h3>
       <ol class="questions">
         <%= render @questions %>
       </ol>
       <%= will_paginate @questions %>
     <% end %>
+    </section>
   </div>
 </div>
