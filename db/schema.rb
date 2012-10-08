@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121007193819) do
+ActiveRecord::Schema.define(:version => 20121008174500) do
 
   create_table "answers", :force => true do |t|
     t.text     "content",     :limit => 255
@@ -46,8 +46,9 @@ ActiveRecord::Schema.define(:version => 20121007193819) do
     t.string   "content"
     t.integer  "user_id"
     t.integer  "answer_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
+    t.integer  "useful",     :default => 0
   end
 
   create_table "countries", :force => true do |t|

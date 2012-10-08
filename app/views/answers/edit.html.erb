@@ -6,11 +6,15 @@
   	</div>
   	<br>
   	<div class="row">
-	  	<% if @comments.any? %>
-	      <h3>Comentarios (<%= @comments.count %>)</h3>
-	      <br>
-	      <ol class="comments">
-	        <%= render @comments %>
-	      </ol>
+  		<%= form_for ([@user, @question, @answer]) do |f| %>
+  			<%= render 'shared/prize_error_messages' %>
+		  	<% if @comments.any? %>
+		      <h3>Comentarios (<%= @comments.count %>)</h3>
+		      <br>
+		      <%= f.fields_for :comments do |ff| %>
+				<% ff.text_field :useful %>
+		      <% end %>
+			<% end %>
+			<%= f.submit "Calificar", class: "btn btn-large btn-primary" %>
 		<% end %>
 	</div>

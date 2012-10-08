@@ -34,17 +34,15 @@ class AnswersController < ApplicationController
 	end
 
 	def update
-		@question = Question.find(params[:question_id])
-		@user = User.find(params[:user_id])
-		@answer = Answer.find(params[:id])
-		@score = @user.score+10
-    	@user.update_attribute(:score, @score) 
-	    if @answer.update_attributes(points: 1) 
-	      	flash[:success] = "Calificada!"
-	      	redirect_to user_question_path(@user, @question)
-	    else
-	      redirect_to user_question_path(@user, @question)
-    	end
+  		@answer = Answer.find(params[:id])
+  		@user = User.find(params[:user_id])
+  		@question = Question.find(params[:question_id])
+  		if @answer.update_attributes(params[:answer])
+  			flash[:success] = "Calificada!"
+      		redirect_to user_question_path(@user, @question)
+      	else
+      		redirect_to edit_user_question_answer_path(@user, @question, @answer)
+      	end
   	end
 
   	def edit
