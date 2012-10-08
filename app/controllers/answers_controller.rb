@@ -47,4 +47,12 @@ class AnswersController < ApplicationController
     	end
   	end
 
+  	def edit
+  		@user = User.find(params[:user_id])
+  		@question = Question.find(params[:question_id])
+  		@answer = Answer.find(params[:id])
+  		@writer = @answer.writer
+  		@comments = @answer.comments
+  	end
+
 end

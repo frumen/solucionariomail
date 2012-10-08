@@ -1,0 +1,16 @@
+<% provide(:title, "Calificar respuesta de "+@writer.name) %>
+<h1>Califica la Respuesta</h1>
+	<div class="row">
+  	  	<h2><%= link_to(@writer.name, @writer) %> respondió...</h2>
+  	  	<%= simple_format(@answer.content) %>
+  	</div>
+  	<br>
+  	<div class="row">
+	  	<% if @comments.any? %>
+	      <h3>Comentarios (<%= @comments.count %>)</h3>
+	      <br>
+	      <ol class="comments">
+	        <%= render @comments %>
+	      </ol>
+		<% end %>
+	</div>

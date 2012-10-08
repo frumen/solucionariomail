@@ -15,7 +15,7 @@
 </div>
 <br><br>
 <% if @question.answers.any? %>
-      <h3>Respuestas (<%= @answers.count %>)</h3>
+      <h3>Respuestas (<%= @answer_count %>)</h3>
       <br>
       <ol class="answers">
         <%= render @answers %>
@@ -35,7 +35,7 @@
       <%= link_to "Comprar puntos", buy_path, class: "btn btn-large btn-primary" %>
     <% end %>
   <% end %>
-  <%if @useful == 0%>
+  <%if @useful == 0 and @shown != 0 %>
     <%= link_to "Ninguna es correcta", "/questions/refund/#{@question.id}", class: "btn btn-large btn-primary" %>
   <%end%>
 </center>

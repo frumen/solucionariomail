@@ -27,6 +27,11 @@ class QuestionsController < ApplicationController
     @answers.each do |a|
       @useful=@useful+a.points
     end
+    @shown=0
+    @answers.each do |a|
+      @shown=@shown+a.available
+    end
+    @answer_count = @question.answers.count - @question.answers.where("rejected = 1").count
   end
 
   def update
