@@ -7,7 +7,6 @@ class UsersController < ApplicationController
     @rank_list = User.find(:all, order: :score).reverse
     @top5 = @rank_list.slice(0,5)
     @pos = @rank_list.rindex(@user) + 1
-    @questions = @user.questions.paginate(page: params[:page])
     @areas = @user.areas
   end
 
@@ -97,6 +96,23 @@ class UsersController < ApplicationController
     @user.update_attribute(:score, @score) 
     sign_in @user
     redirect_to @user
+  end
+
+  def participation
+    @comments = current_user.comments
+    @answers = current_user.written_answers
+    @questions = []
+    @comments.each do |c|
+      @questions.push c.answer.question
+    end
+    @answers.each do |a|
+      @questions.push a.question
+    end
+    @questions.uniq!
+  end
+
+  def my_questions
+    @questions = current_user.questions
   end
 
   private

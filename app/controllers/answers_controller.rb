@@ -52,6 +52,7 @@ class AnswersController < ApplicationController
 			if @fraction<= 50
 		  		if @answer.update_attributes(params[:answer])
 		  			flash[:success] = "Calificada!"
+		  			@question.update_attribute(:solved, 1)
 		  			@genius = @answer.writer
 		  			@fraction = (100-@fraction)/100
 		  			@g_score = @genius.score + (@total*@fraction)
@@ -73,6 +74,7 @@ class AnswersController < ApplicationController
 	      else
 	      	if @answer.update_attributes(params[:answer])
 		  		flash[:success] = "Calificada!"
+		  		@question.update_attribute(:solved, 1)
 		  		@genius = @answer.writer
 		  		@fraction = (100-@fraction)/100
 		  		@g_score = @genius.score + (@total*@fraction)

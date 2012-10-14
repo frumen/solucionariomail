@@ -89,6 +89,10 @@ class QuestionsController < ApplicationController
     redirect_to user_question_path(@user, @question)
   end
 
+  def closed
+    @questions = Question.where("solved = 1")
+  end
+
   def destroy
   end
 end

@@ -13,7 +13,7 @@
 #
 
 class Question < ActiveRecord::Base
-  attr_accessible :area_id, :content, :level, :title, :user_id
+  attr_accessible :area_id, :content, :level, :title, :user_id, :solved
   belongs_to :user
   belongs_to :area
   has_many :answers, dependent: :destroy

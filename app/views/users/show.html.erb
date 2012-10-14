@@ -37,15 +37,5 @@
         Ranking: <%= @pos %>
       </h3>
     </section>
-    <br>
-	  <% if @user.questions.any? %>
-    <section>
-      <h3>Preguntas (<%= @user.questions.count %>)</h3>
-      <ol class="questions">
-        <%= render @questions %>
-      </ol>
-      <%= will_paginate @questions %>
-    <% end %>
-    </section>
   </div>
 </div>

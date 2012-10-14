@@ -6,6 +6,7 @@
 <%if signed_in?%>	
 <%= link_to "Haz una pregunta!", new_user_question_path(current_user), class: "btn btn-large btn-primary" %>
 <%= link_to "Responde preguntas!", questions_path, class: "btn btn-large btn-primary" %>
+<%= link_to "Ver todas las soluciones", solutions_path, class: "btn btn-large btn-primary" %>
 <%else%>
 <%= link_to "Registrate!", signup_path, class: "btn btn-large btn-primary" %>
 <%end%>

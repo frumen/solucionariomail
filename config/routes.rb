@@ -25,6 +25,12 @@ Solucionario::Application.routes.draw do
 
   match '/buy_lrg', to: "users#buy_lrg"
 
+  match '/my_questions', to: "users#my_questions"
+
+  match '/participation', to: "users#participation"
+
+  match '/solutions', to: "questions#closed"
+
   match ':questions/:refund/:id', to: "questions#refund"
 
   root to: 'static_pages#home'

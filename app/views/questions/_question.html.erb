@@ -1,6 +1,6 @@
 <li>
   <font size=4>
-  	<%= link_to(question.title, user_question_path(@user, question)) %>
+  	<%= link_to(question.title, user_question_path(question.user, question)) %>
   </font>
   <br>
   <%= question.area.name %>
@@ -12,6 +12,6 @@
         - Urgencia Alta
         <% end %>
   <span class="timestamp">
-    Realizada <%= question.created_at %> .
+    Realizada por <%= question.user.name %>, <%= question.created_at %> .
   </span>
 </li>

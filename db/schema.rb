@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121008174500) do
+ActiveRecord::Schema.define(:version => 20121014181233) do
 
   create_table "answers", :force => true do |t|
     t.text     "content",     :limit => 255
@@ -63,8 +63,9 @@ ActiveRecord::Schema.define(:version => 20121008174500) do
     t.integer  "area_id"
     t.integer  "level"
     t.integer  "user_id"
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "solved",                    :default => 0
   end
 
   add_index "questions", ["area_id", "created_at"], :name => "index_questions_on_area_id_and_created_at"
