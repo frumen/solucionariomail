@@ -14,7 +14,7 @@
 			      <h3>Comentarios (<%= @comments.count %>)</h3>
 			      <br>
 			      <%= f.fields_for :comments do |ff| %>
-			      	<% ff.text_field :useful %>
+			      <%= render 'shared/comment_fields', f: ff %>
 			      <% end %>
 				<% end %>
 				<%= f.submit "Calificar", class: "btn btn-large btn-primary" %>

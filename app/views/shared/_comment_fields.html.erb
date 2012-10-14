@@ -1,5 +1,11 @@
-<li>
-nlfjnskldjfnsldj
-<br><br>
-<% f.text_field :useful %>
-</li>
+<h4><%= f.object.writer.name %> comentó:</h4>
+<br>
+<%= simple_format(f.object.content) %>
+<% if f.object.writer!=current_user %>
+<%= simple_format(f.label :useful, 'Porcentaje de utilidad') %>
+<div class="cus_input">
+<%= f.text_field :useful %>
+</div>
+<% end %>
+<br>
+<br>
