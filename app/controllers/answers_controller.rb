@@ -47,7 +47,9 @@ class AnswersController < ApplicationController
 		@fraction=0.0
 		if params[:answer][:comments_attributes]
 			params[:answer][:comments_attributes].each do |c|
-				@fraction = @fraction + Integer(c.second[:useful])
+				if c.second[:useful]
+					@fraction = @fraction + Integer(c.second[:useful])
+				end
 			end
 			if @fraction<= 50
 		  		if @answer.update_attributes(params[:answer])
@@ -62,7 +64,9 @@ class AnswersController < ApplicationController
 						@score = c.writer.score
 						@diferencia = (c.useful*@total)/100
 						@score = @score + @diferencia
-						c.writer.update_attribute(:score, @score)
+						if c.writer!=current_user
+							c.writer.update_attribute(:score, @score)
+						end
 					end
 					redirect_to user_question_path(@user, @question)
 		      	else
