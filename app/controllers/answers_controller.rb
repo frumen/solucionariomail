@@ -34,14 +34,53 @@ class AnswersController < ApplicationController
 	end
 
 	def update
-  		@answer = Answer.find(params[:id])
+		@answer = Answer.find(params[:id])
   		@user = User.find(params[:user_id])
   		@question = Question.find(params[:question_id])
-  		if @answer.update_attributes(params[:answer])
-  			flash[:success] = "Calificada!"
-      		redirect_to user_question_path(@user, @question)
-      	else
-      		redirect_to edit_user_question_answer_path(@user, @question, @answer)
+  		if @question.level==1
+			@total = 100
+		elsif @question.level==2
+			@total = 300
+		else
+			@total = 500
+		end
+		@fraction=0.0
+		if params[:answer][:comments_attributes]
+			params[:answer][:comments_attributes].each do |c|
+				@fraction = @fraction + Integer(c.second[:useful])
+			end
+			if @fraction<= 50
+		  		if @answer.update_attributes(params[:answer])
+		  			flash[:success] = "Calificada!"
+		  			@genius = @answer.writer
+		  			@fraction = (100-@fraction)/100
+		  			@g_score = @genius.score + (@total*@fraction)
+		  			@genius.update_attribute(:score, @g_score)
+					@comments = @answer.comments
+					@comments.each do |c|
+						@score = c.writer.score
+						@diferencia = (c.useful*@total)/100
+						@score = @score + @diferencia
+						c.writer.update_attribute(:score, @score)
+					end
+					redirect_to user_question_path(@user, @question)
+		      	else
+		      		redirect_to edit_user_question_answer_path(@user, @question, @answer)
+		      	end
+		      else
+		      	redirect_to edit_user_question_answer_path(@user, @question, @answer)
+	      	end
+	      else
+	      	if @answer.update_attributes(params[:answer])
+		  		flash[:success] = "Calificada!"
+		  		@genius = @answer.writer
+		  		@fraction = (100-@fraction)/100
+		  		@g_score = @genius.score + (@total*@fraction)
+		  		@genius.update_attribute(:score, @g_score)
+		  		redirect_to user_question_path(@user, @question)
+		  	else
+		  		redirect_to edit_user_question_answer_path(@user, @question, @answer)
+		  	end
       	end
   	end
 
